@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'BlogController@index'); 
+// Route::get('/konten' , function(){
+// 	return view('blog.konten');
+// });
+Route::get('/konten/{slug}', 'BlogController@konten')->name('blog.konten');
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'] , function(){
-	Route::get('/home', 'HomeController@index')->name('home.index');
+	Route::get('/admin', 'HomeController@index')->name('home.index');
 	Route::resource('/category','CategoryController');
 	Route::resource('tag','TagController'); 
 
